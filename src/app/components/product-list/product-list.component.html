@@ -1,1 +1,5 @@
-<p>product-list works!</p>
+<div class="container d-flex justify-content-center p">
+    <div class="product-container d-flex align-items-center">
+        <app-product-item *ngFor="let item of items" [item]="item"></app-product-item>
+    </div>
+</div>

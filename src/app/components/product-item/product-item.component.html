@@ -1,1 +1,24 @@
-<p>product-item works!</p>
+<div class="product-index">
+    <div class="media align-items-center flex-column flex-lg-row p-2">
+        <div class="media-body">
+            <a class="nav-link" routerLink="/products/{{item.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <img src="{{ item.url }}" class="product-image" alt="Generic placeholder image">
+            </a>
+            <h5 class="mt-0 font-weight-bold mb-2">{{ item.name }}</h5>
+            <h6 class="font-weight-bold my-2">${{ item.price }}</h6>
+            <div class="d-flex flex-column mt-1">
+                <form #form="ngForm" (ngSubmit)="addItemToCart(item)">
+                    <div class="col-md-3 d-flex flex-row align-items-center mb-1">
+                        <div class="form-outline">
+                            <input id="form1" min="0" name="quantity" aria-label="quantity" type="number" [(ngModel)]="quantity" class="form-control" required />
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="quantity>0 ? false: true" class="btn btn-primary px-3 ms-2">
+                        <i class="fas fa-paper-plane"></i>
+                        Add to cart
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

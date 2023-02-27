@@ -1,25 +1,13 @@
-img {
-  border-radius: 10px;
-  width: 320px;
+.media {
+  width: 350px;
 }
 
-.select-input {
-  width: 108px; 
-  margin-bottom: 8px;
+input#form1 {
+  padding: 5px;
+  width: 5em;
 }
 
-.detail-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 64px;
-}
-
-.detail-item {
-  margin-left: 128px;
-  margin-right: 128px;
-}
-
-.back-link {
-  margin-top: 8px;
+button {
+  min-width: 80%;
+  align-self: center;
 }

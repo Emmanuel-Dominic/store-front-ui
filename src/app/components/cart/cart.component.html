@@ -1,1 +1,62 @@
-<p>cart works!</p>
+<section class="h-100 h-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row" *ngIf="!user.success">
+                <div class="col-lg-7">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h5 class="mb-3">Shopping cart</h5>
+                      <p class="mb-0">You have {{ cartItems ? cartItems.length : '0' }} items in your cart</p>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                  <div class="card mb-3" *ngFor="let item of cartItems; let index = index">
+                    <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                      <div class="col-md-5 d-flex flex-row align-items-center">
+                          <div>
+                            <img src="{{item.url}}" class="img-fluid rounded-3" alt="Shopping item" />
+                          </div>
+                          <div class="ms-3">
+                            <h5>{{item.name}}</h5>
+                            <p class="small mb-0">{{item.description}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-7 d-flex flex-row mr-0 pr-0">
+                          <div class="quantity d-flex flex-row align-items-center">
+                            <div class="form-outline">
+                              <input id="form1" min="0" name="quantity" placeholder="{{item.quantity}}" (change)="updateItemQuatity($event, item.id)" type="number" class="form-control" />
+                            </div>
+                          </div>
+                          <div class="total-price">
+                            <h5 class="mb-0">{{item.price*item.quantity}}</h5>
+                          </div>
+                          <a href="/cart" aria-label="remove-item" class="trash-btn" (click)="removeItem(item.id)"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <app-confirmation [items]="cartItems" [infor]="infor"></app-confirmation>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4" *ngIf="user.success">
+              <div class="row">
+                <div class="success-div col-lg-12">
+                  <div class="d-flex flex-row"><h1>Success!</h1><img src="https://img.icons8.com/emoji/48/null/party-popper.png" class="success-img" alt="success-img" /></div>
+                  <p>Thank you, <b>{{user.name}}</b>!</p>
+                  <p>Your <b>${{user.total}}</b> order is confirmed!</p>
+                  <p>Please allow 1-3 business day(s) for shipping.</p>
+                  <button type="button" (click)="resetCart()" class="btn btn-info btn-block btn-lg">Back to product List</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,45 +1,44 @@
-img {
+.h-100.h-custom {
+  background-color: #eee;
+}
+
+.img-fluid.rounded-3 {
+  width: 65px;
+}
+
+input#form1 {
+  padding: 5px;
+  width: 5em;
+}
+
+.total-price {
   width: 100px;
-  border-radius: 10px;
 }
 
-.form-margin {
-  margin-bottom: 12px;
+.trash-btn {
+  color: #b40c0c;
 }
 
-.cart-item {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
+.quantity {
+  width: 200px;
 }
 
-.cart-item-details {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  margin-left: 80px;
+.success-div {
+  height: 300px;
 }
 
-.number-input {
-  width: 80px;
-  text-align: center;
+.success-img {
+  width: 20%;
 }
 
-.cart-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 64px;
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
+  }
 }
 
-.cart-panel {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-.empty-cart-message {
-  display: flex;
-  justify-content: center;
-  margin-top: 64px;
+.gradient-custom {
+  background: #6a11cb;
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
