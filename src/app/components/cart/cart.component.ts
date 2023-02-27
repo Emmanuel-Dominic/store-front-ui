@@ -15,14 +15,13 @@ export class CartComponent implements OnInit {
     quantity: 0,
     total: 0
   }
-  user: User = JSON.parse(localStorage.getItem('user')!);
+  user: User = JSON.parse(localStorage.getItem('user') || JSON.stringify({name: '', address: '', cardNumber: 0, total: 0, success: false}));
 
   constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
     let user = this.cartService.user;
     let items = this.cartService.getCart();
-    console.log(user.success);
     for (const x in items) {
       let item = this.cartService.getCartItemDetails(parseInt(x));
       this.infor.quantity += parseInt((items as any)[x]);
