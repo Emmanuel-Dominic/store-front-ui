@@ -10,8 +10,10 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ToastComponent } from './components/toast/toast.component';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,20 @@ import { FormsModule } from '@angular/forms';
     ProductItemComponent,
     ProductItemDetailComponent,
     ProductListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgbToastModule,
+    NgIf,
+    NgTemplateOutlet,
+    NgFor,
+    NgbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
