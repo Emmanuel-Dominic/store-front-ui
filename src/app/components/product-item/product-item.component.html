@@ -10,7 +10,7 @@
                 <form #form="ngForm" (ngSubmit)="addItemToCart(item)">
                     <div class="col-md-3 d-flex flex-row align-items-center mb-1">
                         <div class="form-outline">
-                            <input id="form1" min="0" name="quantity" aria-label="quantity" type="number" [(ngModel)]="quantity" class="form-control" required />
+                            <input id="form1" minlength="0" name="quantity" aria-label="quantity" type="number" [(ngModel)]="quantity" class="form-control" required />
                         </div>
                     </div>
                     <button type="submit" [disabled]="quantity>0 ? false: true" class="btn btn-primary px-3 ms-2">

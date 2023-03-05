@@ -35,11 +35,15 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   updateItemQuatity(event: any, itemId: number): void {
-    this.cartService.updateCartItem(itemId, event.target.value);
-    this.toastService.show('Item successfully updated!', { classname: 'bg-success text-light', delay: 5000 });
-    setTimeout(()=>{
-      this.cartService.refreshComponent();
-    }, 1000)
+    setTimeout(() => {
+      if (event != null) {
+        this.cartService.updateCartItem(itemId, event);
+        this.toastService.show('Item successfully updated!', { classname: 'bg-success text-light', delay: 5000 });
+        setTimeout(()=>{
+          this.cartService.refreshComponent();
+        }, 1000)
+      }
+    }, 3000)
   }
 
   removeItem(itemId: number): void {

@@ -28,7 +28,7 @@
                       <div class="col-md-7 d-flex flex-row mr-0 pr-0">
                           <div class="quantity d-flex flex-row align-items-center">
                             <div class="form-outline">
-                              <input id="form1" min="0" name="quantity" placeholder="{{item.quantity}}" (change)="updateItemQuatity($event, item.id)" type="number" class="form-control" />
+                              <input id="form1" minlength="0" name="quantity" [(ngModel)]="item.quantity" placeholder="{{item.quantity}}" (ngModelChange)="updateItemQuatity($event, item.id)" type="number" class="form-control" />
                             </div>
                           </div>
                           <div class="total-price">

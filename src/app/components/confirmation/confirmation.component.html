@@ -1,22 +1,32 @@
 <div class="card bg-primary text-white rounded-3">
     <div class="card-body">
-      <form class="mt-4" #form="ngForm"  (ngSubmit)="submitForm()">
+      <form class="mt-4" #form="ngForm"  (ngSubmit)="submitForm(form)">
         <div class="form-outline form-white mb-4">
           <label class="form-label" for="typeName">Full Name</label>
-          <input type="text" id="typeName" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
-            placeholder="(minimum 3 characters)" name="name" [(ngModel)]="name" required />
+          <div class="errors">
+            <small *ngIf="fullname.invalid && fullname.touched">Name field should be more than 3 characters long!</small>
+          </div>
+          <input type="text" minlength="3" id="typeName" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
+            placeholder="(minimum 3 characters)" name="name" [(ngModel)]="name" required #fullname="ngModel" />
         </div>
 
         <div class="form-outline form-white mb-4">
             <label class="form-label" for="typeAddress">Address</label>
-            <input type="text" id="typeAddress" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
-              placeholder="(minimum 6 characters)" minlength="6" maxlength="25" name="address" [(ngModel)]="address" required />
+            <div class="errors">
+              <small *ngIf="myaddress.invalid && myaddress.touched">Address field should be 6 to 25 characters long!</small>
+            </div>
+            <input type="text" minlength="6" id="typeAddress" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
+              placeholder="(minimum 6 characters)" minlength="6" maxlength="25" name="address" [(ngModel)]="address" required  #myaddress="ngModel" />
         </div>
 
         <div class="form-outline form-white mb-4">
-        <label class="form-label" for="typeNumber">Credit Card Number (minimum 16-19 digit numbers)</label>
-        <input type="text" pattern="\d*" id="typeNumber" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
-            minlength="16" maxlength="19" name="cardNumber" [(ngModel)]="cardNumber" required />
+          <label class="form-label" for="typeNumber">Credit Card Number (minimum 16-19 digit numbers)</label>
+          <div class="errors">
+            <small *ngIf="cardno.invalid && cardno.touched">Card field should contain 16 to 19 digits!</small>
+          </div>
+          <input type="text" minlength="16" maxlength="19" pattern="^\d+$"
+            id="typeNumber" ng-include="card" onload="checkCardNumber(form)" class="form-control form-control-lg" siez="17" [readonly]="infor['quantity']>0 ? false : true"
+            name="cardNumber" [(ngModel)]="cardNumber" required #cardno="ngModel" />
         </div>
 
         <hr class="my-4">
@@ -24,21 +34,21 @@
         <hr class="my-4">
 
         <div class="d-flex justify-content-between">
-          <p class="mb-2">Items: </p>
-          <p class="mb-2">{{ items ? items.length : '0' }}</p>
+          <h5 class="mb-2">Items: </h5>
+          <h5 class="mb-2">{{ items ? items.length : '0' }}</h5>
         </div>
 
         <div class="d-flex justify-content-between">
-          <p class="mb-2">Quantity: </p>
-          <p class="mb-2">{{ infor.quantity }}</p>
+          <h5 class="mb-2">Quantity: </h5>
+          <h5 class="mb-2">{{ infor.quantity }}</h5>
         </div>
 
         <div class="d-flex justify-content-between mb-4">
-          <p class="mb-2">Total: </p>
-          <p class="mb-2">$ {{ infor.total | number:'0.2-2'}}</p>
+          <h5 class="mb-2">Total: </h5>
+          <h5 class="mb-2">$ {{ infor.total | number:'0.2-2'}}</h5>
         </div>
 
-        <button type="submit" [disabled]="infor['quantity']>0 ? false : true" class="btn btn-info btn-block btn-lg">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-info btn-block btn-lg">
           <div class="d-flex justify-content-between">
             <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
           </div>

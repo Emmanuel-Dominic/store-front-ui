@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Infor, User } from 'src/app/models/product';
+import { NgForm } from '@angular/forms';
 
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -16,26 +18,30 @@ export class ConfirmationComponent implements OnInit {
   @Input() infor: Infor;
   @Output() user = new EventEmitter<User>();
 
-  constructor(private cartService: CartService) {
+  constructor(public toastService: ToastService, private cartService: CartService) {
     this.items = [];
     this.infor = {
       quantity: 0,
       total: 0
     }
   }
- 
+
   ngOnInit(): void { }
 
-  submitForm(): void {
-    this.user.emit({
-      name: this.name,
-      address: this.address,
-      cardNumber: this.cardNumber,
-      total: this.infor.total,
-      success: true
-    });
-    localStorage.setItem('user', JSON.stringify({name: this.name, address: this.address, cardNumber: this.cardNumber, total: this.infor.total, success: true}));
-    localStorage.removeItem("cart");
-    this.cartService.refreshComponent();
+  submitForm(checkoutForm: NgForm): void {
+    if((19 < String(this.cardNumber).length) || (String(this.cardNumber).length < 16)) {
+      checkoutForm.form.controls['cardNumber'].setErrors({'incorrect': true});
+    }else {
+      this.user.emit({
+        name: this.name,
+        address: this.address,
+        cardNumber: this.cardNumber,
+        total: this.infor.total,
+        success: true
+      });
+      localStorage.setItem('user', JSON.stringify({name: this.name, address: this.address, cardNumber: this.cardNumber, total: this.infor.total, success: true}));
+      localStorage.removeItem("cart");
+      this.cartService.refreshComponent();
+    }
   }
 }
